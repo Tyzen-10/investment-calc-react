@@ -9,6 +9,7 @@ function App() {
     expectedReturn : 6,
     duration : 10
 });
+const inputIsValid = userInput.duration>=1;
 const changeHandler = (identifier,value) => {
   setUserInput(prevUserInput=>{
       return {
@@ -21,7 +22,8 @@ const changeHandler = (identifier,value) => {
     <>
     <Header></Header>
     <UserInput onChange={changeHandler} userInput={userInput}></UserInput>
-    <Results input={userInput}></Results>
+    {!inputIsValid&&<p className="center">Duration cannot be zero.</p>}
+    {inputIsValid&&<Results input={userInput}></Results>}
     </>
   )
 }
