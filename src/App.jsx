@@ -1,6 +1,26 @@
+import { useState } from "react";
+import UserInput from "./components/UserInput"
+import Header from "./components/header"
 function App() {
+  const [userInput,setUserInput] = useState({
+    initialInvestment : 10000,
+    annualInvestment : 1000,
+    expectedReturn : 6,
+    duration : 10
+});
+const changeHandler = (identifier,value) => {
+  setUserInput(prevUserInput=>{
+      return {
+          ...prevUserInput,
+          [identifier] : value
+      }
+  })
+}
   return (
-    <h1>React Investment Calculator</h1>
+    <>
+    <Header></Header>
+    <UserInput onChange={changeHandler} userInput={userInput}></UserInput>
+    </>
   )
 }
 
